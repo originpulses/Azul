@@ -71,6 +71,9 @@ void mainMenu()
 
 void Credits()
 {
+	cout<<"=========================="<<endl;
+	cout<< " Team Name: AZUL UNITED" <<endl;
+	cout<<"==========================\n\n";
 	cout<< "----------------------------------" <<endl;
 	cout<< "Student 1:\n\n";
 	cout<< "Name: Syed Sabih Ali" <<endl;
