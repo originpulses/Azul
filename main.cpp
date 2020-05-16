@@ -7,15 +7,15 @@ using std::endl;
 using std::cin;
 using std::string;
 
-void mainMenu();
-void Credits();
+void mainMenu(void);
+void Credits(void);
 
 int main(void)
 {
    mainMenu();
 }
 
-void mainMenu()
+void mainMenu(void)
 {
 	cout<<"=================="<<endl;
 	cout<< " Welcome to Azul!" <<endl;
@@ -69,7 +69,7 @@ void mainMenu()
 	}
 }
 
-void Credits()
+void Credits(void)
 {
 	cout<<"=========================="<<endl;
 	cout<< " Team Name: AZUL UNITED" <<endl;
