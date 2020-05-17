@@ -10,19 +10,16 @@ using std::string;
 void mainMenu(void);
 void Credits(void);
 
-int main(void)
-{
+int main(void) {
    mainMenu();
 }
 
-void mainMenu(void)
-{
+void mainMenu(void) {
 	cout<<"=================="<<endl;
 	cout<< " Welcome to Azul!" <<endl;
 	cout<<"=================="<<endl;
 	bool exit = false;
-	while(exit != true)
-	{
+	while(exit != true) {
 		cout<<endl;
 		cout<< "Menu" <<endl;
 		cout<< "----" <<endl;
@@ -33,35 +30,29 @@ void mainMenu(void)
 		string choice;
 		cin>>choice;
 			
-	if(choice == "1")
-	{
+	if(choice == "1") {
 		//TODO
 	}
 
-	else if(choice == "2")
-	{
+	else if(choice == "2") {
 		//TODO
 	}
 
-	else if(choice == "3")
-	{
+	else if(choice == "3") {
 		Credits();
 	}
 
-	else if(choice == "4")
-	{
+	else if(choice == "4") {
 		cout << "Goodbye" <<endl;;
 		std::exit(EXIT_SUCCESS);
 	}
 			
-	else if (std::cin.eof())
-	{
+	else if (std::cin.eof()) {
 		cout << "Goodbye." <<endl;
 		std::exit(EXIT_SUCCESS);
 	}
 
-	else
-	{
+	else {
 		cout << "Invalid input";
 	}
 		
@@ -69,8 +60,7 @@ void mainMenu(void)
 	}
 }
 
-void Credits(void)
-{
+void Credits(void) {
 	cout<<"=========================="<<endl;
 	cout<< " Team Name: AZUL UNITED" <<endl;
 	cout<<"==========================\n\n";
