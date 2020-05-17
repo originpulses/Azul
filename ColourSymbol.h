@@ -1,5 +1,5 @@
-#ifndef COLOUR_SYMBOL_H
-#define COLOUR_SYMBOL_H
+#ifndef AZUL_COLOUR_SYMBOL_H
+#define AZUL_COLOUR_SYMBOL_H
 
 //Symbol Defines for Colours
 #define RED        'R'
@@ -24,11 +24,11 @@
 #define TOTAL_TILE 100
 #define MAX_REMAIN 3
 #define BROKEN_LEN 7
-#define FACTORIES 6
+#define NOFACTORY 6
 #define BOARD_SIZE 5
 #define NUMBEROFCOLOUR 5
 #define NUMBEROFTILE 4
 #define NUMBEROFPLAYER 2
 typedef char Colour;
 
-#endif // COLOUR_SYMBOL_H
+#endif // AZUL_COLOUR_SYMBOL_H

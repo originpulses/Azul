@@ -1,11 +1,15 @@
 #ifndef AZUL_LINKEDLIST_H
 #define AZUL_LINKEDLIST_H
 
-#include "Node.h"
 #include <vector>
 #include <random>
 #include <iostream>
 #include <algorithm>
+
+#include "Node.h"
+
+using std::cout;
+using std::endl;
 
 // LinkedList
 class LinkedList {

@@ -117,6 +117,6 @@ void LinkedList::printAll() {
         str.push_back(' ');
         node = node->next;
     }
-    std::cout<< str <<std::endl;
+    cout<< str <<endl;
 }
 

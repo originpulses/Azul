@@ -1,5 +1,5 @@
-#ifndef NODE_H
-#define NODE_H
+#ifndef AZUL_NODE_H
+#define AZUL_NODE_H
 
 #include "Tile.h"
 
@@ -13,4 +13,4 @@ public:
    Node* next;
 };
 
-#endif // NODE_H
+#endif // AZUL_NODE_H

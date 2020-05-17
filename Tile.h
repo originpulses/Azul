@@ -1,5 +1,5 @@
-#ifndef TILE_H
-#define TILE_H
+#ifndef AZUL_TILE_H
+#define AZUL_TILE_H
 
 #include "ColourSymbol.h"
 
@@ -16,4 +16,4 @@ private:
     Colour colour;
 };
 
-#endif //TILE_H
+#endif // AZUL_TILE_H
