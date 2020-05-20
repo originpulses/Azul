@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include "Game.cpp"
+#include "Database.cpp"
 
 using std::cout;
 using std::endl;
@@ -31,11 +33,18 @@ void mainMenu(void) {
 		cin>>choice;
 			
 	if(choice == "1") {
-		//TODO
+		Game* game = new Game();
 	}
 
-	else if(choice == "2") {
-		//TODO
+	else if(choice == "2")
+	{
+		Database* db = new Database(cin);
+		Game* game = new Game();
+		game->loadFactory(db->getFactory());
+		game->play();
+
+
+		delete db;
 	}
 
 	else if(choice == "3") {
