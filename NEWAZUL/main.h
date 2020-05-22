@@ -3,11 +3,7 @@
 
 #include "Game.h"
 
-//Function to display the main menu and take user's input
-//according to the valid standards 
-int mainMenu(/*string* moves, int &index, int Size*/);
-
-//Functoin to show the Credits of student
+//Function to show the Credits of the team
 void Credits();
 
 #endif // AZUL_MAIN_H

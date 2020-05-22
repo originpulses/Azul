@@ -11,17 +11,20 @@ using std::vector;
 using std::cout;
 using std::endl;
 
-class LinkedList
-{
+class LinkedList {
+private:
 	Node* head;
 	int size = 0;
+
 public:
-	LinkedList();	// Constructor
-	void insert(char data);//inserts the char data at the end of the list
-	void removeAll(vector<char>& lid, bool check);//Removes all nodes from list,This function will also move all the broken tiles to the back of the lid
+	LinkedList(); //Constructor
+	~LinkedList();
+
+	void insert(char data); //Inserts the char data at the end of the list
+	void removeAll(vector<char>& lid, bool check);// Removes all nodes from list, This function will also move all the broken tiles to the back of the lid
 	void print();	// Print data of all nodes in linear form
 	int getSize();
-	Node *Head();	// Retuens the head pointer of list
+	Node *Head();	// Returns the head pointer of list
 };
 
 #endif // AZUL_LINKEDLIST_H

@@ -1,7 +1,7 @@
 #include "Node.h"
 
-Node::Node()
-{
+Node::Node() {
+	
 	this->data = '.';
 	this->next = nullptr;
 }

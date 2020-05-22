@@ -1,8 +1,7 @@
 #ifndef AZUL_NODE_H
 #define AZUL_NODE_H
 
-struct Node
-{
+struct Node {
 public:
 	char data;
 	Node *next;

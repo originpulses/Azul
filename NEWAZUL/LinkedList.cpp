@@ -1,20 +1,22 @@
 #include "LinkedList.h"
 
-LinkedList::LinkedList()
-{
+LinkedList::LinkedList() {
+
 	this->head = nullptr;
 	this->size = 0;
 }
 
-void LinkedList::insert(char data)
-{
-	if (this->head == nullptr)
-	{
+ LinkedList::~LinkedList(){}
+
+void LinkedList::insert(char data) {
+
+	if (this->head == nullptr) {
+
 		this->head = new Node();
 		head->data = data;
 	}
-	else
-	{
+
+	else {
 		Node* temp = this->head;
 		while (temp->next != nullptr)
 			temp = temp->next;
@@ -27,11 +29,10 @@ void LinkedList::insert(char data)
 	this->size++;
 }
 
-void LinkedList::removeAll(vector<char>& lid, bool check)	//This function will also move all the broken tiles to the back of the lid
-{
+//This function will also move all the broken tiles to the back of the lid
+void LinkedList::removeAll(vector<char>& lid, bool check) {
 	Node* cur = this->head;
-	while (cur != nullptr)
-	{
+	while (cur != nullptr) {
 		Node* next = cur->next;
 		if (check && cur->data != 'F')	//First player tiles should not be added into lid or box
 		{
@@ -44,28 +45,25 @@ void LinkedList::removeAll(vector<char>& lid, bool check)	//This function will a
 	this->size = 0;
 }
 
-void LinkedList::print()
-{
+void LinkedList::print() {
+
 	Node* temp = this->head;
-	//printf("Broken: ");
 	cout << "Broken: ";
-	while (temp != nullptr)
-	{
+	while (temp != nullptr) {
+
 		if (temp->data == 'F' || temp->data == 'B' || temp->data == 'Y' || temp->data == 'R' || temp->data == 'U' || temp->data == 'L')
-			//printf("%c ", temp->data);
 			cout << temp->data << " ";
 		temp = temp->next;
 	}
-	//printf("\n");
 	cout << "\n";
 }
 
-int LinkedList::getSize()
-{
+int LinkedList::getSize() {
+
 	return this->size;
 }
 
-Node* LinkedList::Head()
-{
+Node* LinkedList::Head() {
+	
 	return this->head;
 }
