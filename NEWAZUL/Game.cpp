@@ -16,7 +16,10 @@ int mainMenu(/*string* moves, int &index, int Size*/)
 	string input;
 
 	getline(cin,input);
-
+	if (std::cin.eof())
+	{
+		return 4;
+	}
 	char temp = (char)input[0];
 	choice = static_cast<int>(temp)-48;
 	while((input.size() != 1 ) || !(choice >=1 && choice <= 4))
@@ -24,7 +27,10 @@ int mainMenu(/*string* moves, int &index, int Size*/)
 		cout << "Invalid Input, Enter again\n";
 		cout << "> ";
 		getline(cin, input);
-
+		if (std::cin.eof())
+		{
+			return 4;
+		}
 		char temp = (char)input[0];
 		choice = static_cast<int>(temp)-48;
 	}
