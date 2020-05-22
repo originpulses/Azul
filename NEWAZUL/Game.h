@@ -1,5 +1,5 @@
-#ifndef HEADER_HEADER
-#define HEADER_HEADER
+#ifndef GAME_H
+#define GAME_H
 
 #include <fstream>
 
@@ -59,4 +59,4 @@ int countRows(char filename[]);
 //To check either both files are equal or not
 bool areFilesEqual(char N1[], char N2[]);
 
-#endif
+#endif // GAME_H

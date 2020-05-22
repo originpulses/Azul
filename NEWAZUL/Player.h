@@ -1,4 +1,5 @@
 #ifndef AZUL_PLAYER_H
+#define AZUL_PLAYER_H
 
 #include "LinkedList.h"
 

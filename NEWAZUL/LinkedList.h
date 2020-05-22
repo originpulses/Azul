@@ -1,4 +1,5 @@
 #ifndef AZUL_LINKEDLIST_H
+#define AZUL_LINKEDLIST_H
 
 #include <iostream>
 #include <string>
