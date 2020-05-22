@@ -1,122 +1,69 @@
 #include "LinkedList.h"
 
-// Functional Implementation of LinkedLists
 LinkedList::LinkedList() {
-    
-    head = nullptr;
-    size = 0;
+
+	this->head = nullptr;
+	this->size = 0;
 }
 
-LinkedList::~LinkedList() {
+ LinkedList::~LinkedList(){}
 
-    this->clear();
+void LinkedList::insert(char data) {
+
+	if (this->head == nullptr) {
+
+		this->head = new Node();
+		head->data = data;
+	}
+
+	else {
+		Node* temp = this->head;
+		while (temp->next != nullptr)
+			temp = temp->next;
+
+		Node* T = new Node();
+		T->data = data;
+		temp->next = T;
+		//delete temp;
+	}
+	this->size++;
 }
 
-// Implementing our ADT's (Abstract Data Types)
+//This function will also move all the broken tiles to the back of the lid
+void LinkedList::removeAll(vector<char>& lid, bool check) {
+	Node* cur = this->head;
+	while (cur != nullptr) {
+		Node* next = cur->next;
+		if (check && cur->data != 'F')	//First player tiles should not be added into lid or box
+		{
+			lid.push_back(cur->data);
+		}
+		delete cur;
+		cur = next;
+	}
+	this->head = nullptr;
+	this->size = 0;
+}
+
+void LinkedList::print() {
+
+	Node* temp = this->head;
+	cout << "Broken: ";
+	while (temp != nullptr) {
+
+		if (temp->data == 'F' || temp->data == 'B' || temp->data == 'Y' || temp->data == 'R' || temp->data == 'U' || temp->data == 'L')
+			cout << temp->data << " ";
+		temp = temp->next;
+	}
+	cout << "\n";
+}
+
 int LinkedList::getSize() {
 
-    return this->size;
+	return this->size;
 }
 
-
-Tile* LinkedList::get() {
-
-    if(this->head != nullptr) {
-        Node* tmp = this->head;
-        this->head = tmp->next;
-        this->size--;
-        return tmp->tile;
-    } 
-    else {
-        return nullptr;
-    }
+Node* LinkedList::Head() {
+	
+	return this->head;
 }
-
-bool LinkedList::remove(Tile *tile) {
-
-    Node* tmp = this->head;
-    if(this->head->tile->getColour() == tile->getColour()) {
-        this->head = this->head->next;
-        delete tmp;
-        this->size--;
-        return true;
-    }
-    for(int i=0; i < this->size-1; i++) {
-        if(tmp->next->tile->getColour() == tile->getColour()) {
-            tmp->next = tmp->next->next;
-            this->size--;
-            delete tmp;
-            return true;
-        }
-        tmp = tmp->next;
-    }
-    return false;
-}
-
-void LinkedList::clear() {
-
-    if(head != nullptr) {
-        Node* nodeCheck = head;
-        while(nodeCheck != nullptr) {
-            Node* next = nodeCheck->next;
-            nodeCheck = nullptr;
-            delete nodeCheck;
-            nodeCheck = next;
-        }
-        delete nodeCheck;
-    }
-
-    this->size = 0;
-}
-
-void LinkedList::addFront(Tile* tile) {
-
-    Node* tmpHead = new Node(tile, this->head);
-    this->head = tmpHead;
-    this->size++;
-}
-
-void LinkedList::addBack(Tile* tile) {
-
-    if(this->head != nullptr) {
-        Node* tmp = this->head;
-        while(tmp->next != nullptr) {
-            tmp = tmp->next;
-        }
-        tmp->next = new Node(tile, nullptr);
-        this->size++;
-    }
-}
-
-void LinkedList::shuffle(int seed) {
-    std::vector<Tile*> shuffles;
-    Node* node = this->head;
-    while (node != nullptr) {
-        shuffles.push_back(node->tile);
-        node = node->next;
-    }
-    //Give seed to main
-    std::default_random_engine e(seed);
-    std::shuffle (shuffles.begin(), shuffles.end(), e);
-
-    node = this->head;
-    for(int i=0; i < (signed)shuffles.size(); i++) {
-
-        if(shuffles[i] != nullptr) {
-            node->tile = shuffles[i];
-            node = node->next;
-        }
-    }
-}
-
-void LinkedList::printAll() {
-    std::string str = " ";
-    Node* node = this->head;
-    while(node != nullptr) {
-        str.push_back(node->tile->getColour());
-        str.push_back(' ');
-        node = node->next;
-    }
-    cout<< str <<endl;
-}
-

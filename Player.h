@@ -1,25 +1,23 @@
 #ifndef AZUL_PLAYER_H
 #define AZUL_PLAYER_H
 
-#include <iostream>
-#include <string>
+#include "LinkedList.h"
 
-using std::cout;
-using std::endl;
+using std::string;
 
 class Player {
-    
+
 public:
-    Player(std::string name);
-    ~Player();
-    void setPoints(int points);
-    int getPoints();
-    void print();
-    std::string getName();
-    
-private:
-    std::string name;
-    int pt;
+	char name[30];
+	int score;
+	char** pattern;
+	char board[5][5];
+	LinkedList broken;
+	//Constructor, Destructor
+	Player();
+	~Player();
+	//setter
+	void setPlayer(string n, int score, char** p, char B[][5], LinkedList floor);
 };
 
 #endif // AZUL_PLAYER_H

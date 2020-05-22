@@ -1,75 +1,77 @@
-#include <iostream>
-#include <string>
-#include <exception>
-#include "Game.cpp"
-#include "Database.cpp"
+#include "main.h"
 
-using std::cout;
-using std::endl;
-using std::cin;
-using std::string;
+int main(int argn, char** argl) {
 
-void mainMenu();
-void Credits();
+	//Number of players
+	int n_player = 2;
+	//If recieve any value from command line then 
+	//it will be set to the seed otherwise the default value for seed is 1
+	int seed = 1;
+	if (argn > 1) {
 
-int main(void) {
-   mainMenu();
-}
+		if(argn > 1)
+		seed = static_cast<int>(argl[1][0])-48;
 
-void mainMenu(void) {
-	cout<<"=================="<<endl;
-	cout<< " Welcome to Azul!" <<endl;
-	cout<<"=================="<<endl;
-	bool exit = false;
-	while(exit != true) {
-		cout<<endl;
-		cout<< "Menu" <<endl;
-		cout<< "----" <<endl;
-		cout<< "1. New Game" <<endl;
-		cout<< "2. Load Game" <<endl;
-		cout<< "3. Credits (Students Info)" <<endl;
-		cout<< "4. Quit\n\n> ";
-		string choice;
-		cin>>choice;
-			
-	if(choice == "1") {
-		Game* game = new Game();
+		//Seeding the random number generator
+		srand(seed);
+
+		// Creating the box with 100 tiles(20 of each design)
+		vector<char> box;
+
+		// Creating the lid to place the extra tiles at the end of each round
+		vector<char> lid;
+
+		int choice = 0;
+		bool valid = true;
+
+		while (valid) {
+
+				choice = mainMenu();
+
+			if (choice == 1) {
+				cout << "\nStarting a New Game\n";
+				valid = newGame(box, lid, n_player);
+			}
+			else if (choice == 2) {
+
+				cout << "Enter the filename from which you want to load a game\n";
+				cout << "> ";
+				
+				//Reading the name of file from to load the saved game
+				char* name = new char[30];
+				cin.getline(name, 30);
+				try {
+
+					valid = loadGame(box, lid, name, n_player);
+				}
+				catch (const char* msg) {
+
+					cout << msg << "\n";
+					choice = 0;
+				}
+				delete[]name;
+				name = nullptr;
+			}
+			else if (choice == 3) {
+
+				Credits();
+			}
+			else if (choice == 4) {
+
+				valid = false;
+			}
+		}
+		cout << "\n\nGoodbye\n";
 	}
-
-	else if(choice == "2")
-	{
-		Database* db = new Database(cin);
-		Game* game = new Game();
-		game->loadFactory(db->getFactory());
-		game->play();
-
-
-		delete db;
-	}
-
-	else if(choice == "3") {
-		Credits();
-	}
-
-	else if(choice == "4") {
-		cout << "Goodbye" <<endl;;
-		std::exit(EXIT_SUCCESS);
-	}
-			
-	else if (std::cin.eof()) {
-		cout << "Goodbye." <<endl;
-		std::exit(EXIT_SUCCESS);
-	}
-
 	else {
-		cout << "Invalid input";
-	}
-		
-	 cout<<endl;
-	}
+		cout << "\nToo few command line parameters passed...\nYou need to at least pass Seed for random number generator\n\n";
+	}	
+	return 0;
 }
 
-void Credits() {
+//Function to show the Credits of the team
+void Credits()
+{
 	cout<<"=========================="<<endl;
 	cout<< " Team Name: AZUL UNITED" <<endl;
 	cout<<"==========================\n\n";
@@ -86,9 +88,4 @@ void Credits() {
 	cout<< "Email: s3545832@student.rmit.edu.au" <<endl;
 	cout<< "----------------------------------\n\n";
 	cout<< "----------------------------------" <<endl;
-	cout<< "Student 3:\n\n";
-	cout<< "Name: Stephen Finlay" <<endl;
-	cout<< "Student ID: S3786139" <<endl;
-	cout<< "Email: S3786139@student.rmit.edu.au" <<endl;
-	cout<< "----------------------------------\n\n";
 }
