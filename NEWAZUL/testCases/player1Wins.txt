@@ -1,3 +1,6 @@
+7 #Invalid Input
+9 #Invalid Input
+5 #Invalid Input
 2
 saveGame.txt
 turn 5 Y 5
