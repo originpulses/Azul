@@ -1,5 +1,5 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef AZUL_GAME_H
+#define AZUL_GAME_H
 
 #include <fstream>
 
@@ -59,4 +59,4 @@ int countRows(char filename[]);
 //To check either both files are equal or not
 bool areFilesEqual(char N1[], char N2[]);
 
-#endif // GAME_H
+#endif // AZUL_GAME_H
