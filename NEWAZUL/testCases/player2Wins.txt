@@ -1,0 +1,20 @@
+7 #Invalid Input
+#
+5 #Invalid Input
+qwerty
+2
+saveGame.txt
+turn 2 U 1
+turn 3 L 3
+turn 4 R 5
+ihwrwgigsdkjf
+turn 5 B 4
+turn 1 Y 4
+turn 0 B 4
+just nothing
+turn 0 R 5
+this is an invalid input
+turn 0 L 3
+turn 0 Y 4
+turn 0 U 2
+4 #To quit the game.
