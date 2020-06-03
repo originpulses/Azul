@@ -51,11 +51,36 @@ void LinkedList::print() {
 	cout << "Broken: ";
 	while (temp != nullptr) {
 
-		if (temp->data == 'F' || temp->data == 'B' || temp->data == 'Y' || temp->data == 'R' || temp->data == 'U' || temp->data == 'L')
-			cout << temp->data << " ";
+		if (temp->data == 'B') {
+
+			cout << "\033[48;2;0;9;255m" << "B" << "\033[m "; // Dark Blue
+		}
+		else if (temp->data == 'L') {
+
+			cout << "\033[48;2;101;136;233m" << "L" << "\033[m ";//Light Blue
+		}
+		else if (temp->data == 'R') {
+
+			cout << "\033[48;2;255;0;0m" << "R" << "\033[m "; //Red
+		}
+		else if (temp->data == 'U') {
+
+			cout << "\033[48;2;0;0;0m" << "U" << "\033[m "; //Black
+		}
+		else if (temp->data == 'O') {
+
+			cout << "\033[48;2;255;165;0;30m" << "O" << "\033[m ";  // Orange
+		}
+		else if (temp->data == 'Y') {
+
+			cout << "\033[48;2;255;255;0;30m" << "Y" << "\033[m "; // Yellow
+		}
+		else if (temp->data == 'F') {
+
+			cout << "\033[48;2;255;255;255;30m" << "F" << "\033[m "; // First player tile
+		}
 		temp = temp->next;
 	}
-	cout << "\n";
 }
 
 int LinkedList::getSize() {
