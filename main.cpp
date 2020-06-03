@@ -4,6 +4,7 @@ int main(int argn, char** argl) {
 
 	//Number of players
 	int n_player = 2;
+	const int Bsize = 6; //this is the size of mosaic
 	//If recieve any value from command line then 
 	//it will be set to the seed otherwise the default value for seed is 1
 	int seed = 1;
@@ -30,7 +31,7 @@ int main(int argn, char** argl) {
 
 			if (choice == 1) {
 				cout << "\nStarting a New Game\n";
-				valid = newGame(box, lid, n_player);
+				valid = newGame(box, lid, n_player, Bsize);
 			}
 			else if (choice == 2) {
 
@@ -42,7 +43,7 @@ int main(int argn, char** argl) {
 				cin.getline(name, 30);
 				try {
 
-					valid = loadGame(box, lid, name, n_player);
+					valid = loadGame(box, lid, name, n_player, Bsize);
 				}
 				catch (const char* msg) {
 
@@ -69,23 +70,11 @@ int main(int argn, char** argl) {
 	return 0;
 }
 
-//Function to show the Credits of the team
+//Function to show the Credits of the student
 void Credits()
 {
 	cout<<"=========================="<<endl;
-	cout<< " Team Name: AZUL UNITED" <<endl;
+	cout<< " Developed By: Syed Sabih Ali" <<endl;
+	cout<< " Student ID: s3528350" <<endl;
 	cout<<"==========================\n\n";
-	cout<< "----------------------------------" <<endl;
-	cout<< "Student 1:\n\n";
-	cout<< "Name: Syed Sabih Ali" <<endl;
-	cout<< "Student ID: s3528350" <<endl;
-	cout<< "Email: s3528350@student.rmit.edu.au" <<endl;
-	cout<< "----------------------------------\n\n";
-	cout<< "----------------------------------" <<endl;
-	cout<< "Student 2:\n\n";
-	cout<< "Name: Carlo Manfredi" <<endl;
-	cout<< "Student ID: s3545832" <<endl;
-	cout<< "Email: s3545832@student.rmit.edu.au" <<endl;
-	cout<< "----------------------------------\n\n";
-	cout<< "----------------------------------" <<endl;
 }
