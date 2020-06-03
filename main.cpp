@@ -73,8 +73,8 @@ int main(int argn, char** argl) {
 //Function to show the Credits of the student
 void Credits()
 {
-	cout<<"=========================="<<endl;
-	cout<< " Developed By: Syed Sabih Ali" <<endl;
-	cout<< " Student ID: s3528350" <<endl;
-	cout<<"==========================\n\n";
+	cout << "\t\033[48;2;0;255;34;30m ================================\033[m\n\n";
+	cout << "\t\033[1;37;41mDeveloped By: Syed Sabih Ali\033[m\n\n";
+	cout << "\t\033[1;37;41mStudent ID: s3528350\033[m\n\n";
+	cout << "\t\033[48;2;0;255;34;30m ================================\033[m\n\n";
 }
