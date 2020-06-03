@@ -1,5 +1,5 @@
 # This is Azul v2.0
-### Switch branch to "OldAzul" for v1.0
+### Switch branch to "AzulOld" for v1.0
 
 ## What does v2.0 include?
 1. Added colour to the tiles.
@@ -14,6 +14,9 @@
 ## How to run
 1. On the command line enter `./azul <seed>`
 
+## How to clean up
+1. run command `make clean`
+
 ## Playing Instructions
 1. Enter the "New Game" mode by pressing 1
 2. Type command `help` to see the instructions on how to play the game
@@ -21,7 +24,4 @@
 ## How to test
 1. Tests are done with seed number "1" so make sure you are doing tests especially player 1 and 2 winning tests with seed number "1"
 2. Example: `./azul 1 <testCases/player1Wins.in`
- 
-## How to clean up
-1. run command `make clean`
  
