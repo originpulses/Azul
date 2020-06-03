@@ -6,7 +6,7 @@ Player::Player() {}
 //Destructor
 Player::~Player() {
 
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 6; i++) {
 
 		delete[]pattern[i];
 	}
@@ -16,8 +16,9 @@ Player::~Player() {
 }
 
 //setter
-void Player::setPlayer(string n, int score, char** p, char B[][5], LinkedList floor) {
+void Player::setPlayer(string n, int score, char** p, char B[][6], LinkedList floor) {
 
+	const int Bsize = 6;
 	//Initializing the name of player
 	int _i;
 	for (_i = 0; n[_i] != '\0'; _i++) {
@@ -30,8 +31,8 @@ void Player::setPlayer(string n, int score, char** p, char B[][5], LinkedList fl
 	this->score = score;
 
 	//Initializing the pattern board of player
-	pattern = new char* [5];
-	for (int i = 0; i < 5; i++) {
+	pattern = new char* [Bsize];
+	for (int i = 0; i < Bsize; i++) {
 
 		pattern[i] = new char[i + 1];
 		for (int j = 0; j < (i + 1); j++) {
@@ -41,9 +42,9 @@ void Player::setPlayer(string n, int score, char** p, char B[][5], LinkedList fl
 	}
 
 	//Initializing the main tile board of player
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < Bsize; i++) {
 
-		for (int j = 0; j < 5; j++) {
+		for (int j = 0; j < Bsize; j++) {
 
 			board[i][j] = B[i][j];
 		}
