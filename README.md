@@ -1,17 +1,27 @@
-# Azul Important Information
+# This is Azul v2.0
+### Switch branch to "OldAzul" for v1.0
+
+## What does v2.0 include?
+1. Added colour to the tiles.
+2. Player boards are now parallel/next to each other.
+3. Added command `help` for viewing game instuctions manual.
+4. Game is now 6-Tile Mode (Advanced Azul)
+5. Implemented Grey-Board Mode
 
 ## How to compile
--run command `make azul`
+1. run command `make azul`
 
 ## How to run
--On the command line enter `./azul <seed>`
+1. On the command line enter `./azul <seed>`
+
+## Playing Instructions
+1. Enter the "New Game" mode by pressing 1
+2. Type command `help` to see the instructions on how to play the game
 
 ## How to test
--Tests are done with seed number "1" so make sure you are doing tests especially player 1 and 2 winning tests with seed number "1"
--Example: `./azul 1 <testCases/player1Wins.in`
+1. Tests are done with seed number "1" so make sure you are doing tests especially player 1 and 2 winning tests with seed number "1"
+2. Example: `./azul 1 <testCases/player1Wins.in`
  
 ## How to clean up
--run command `make clean`
-
-### Other instructions relating to actual gameplay are embedded in the code! Enter in New Game mode by pressing 1 and read through instructions
+1. run command `make clean`
  
