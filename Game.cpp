@@ -1,8 +1,8 @@
 #include "Game.h"
 
-//Function to display the main menu and take user's input according to the valid standards 
-int mainMenu() {
-
+//Function to display the main menu and take user's input
+int mainMenu()
+{
 	int choice = 0;
 	cout << "Menu\n";
 	cout << "----\n";
@@ -10,10 +10,10 @@ int mainMenu() {
 	cout << "2. Load Game\n";
 	cout << "3. Credits (Show student information)\n";
 	cout << "4. Quit\n\n> ";
-	
-	string input;
-	getline(cin, input);
 
+	string input;
+
+	getline(cin, input);
 	if (std::cin.eof()) {
 
 		return 4;
@@ -42,7 +42,7 @@ void shuffle(vector<char>& box) {
 	for (size_t i = 0; i < 500; ) {
 		int i1 = (rand() % box.size());
 		int i2 = (rand() % box.size());
-		
+
 		if (i1 != i2) {
 			//Swapping ranks of 2 random cards
 			temp = box[i2];
@@ -53,7 +53,6 @@ void shuffle(vector<char>& box) {
 	}
 }
 
-//To count the number of rows in a text file
 int countRows(char filename[]) {
 
 	int count = 0;
@@ -68,8 +67,8 @@ int countRows(char filename[]) {
 		char tempp = '.';
 		while (!fin.eof()) {
 
-			if (tempp == '\n')
-			{
+			if (tempp == '\n') {
+
 				count++;
 			}
 			fin.get(tempp);
@@ -79,7 +78,6 @@ int countRows(char filename[]) {
 	return count + 1; // +1 because last line contains eof character instead of '\n'
 }
 
-//To check either both files are equal or not
 bool areFilesEqual(char N1[], char N2[]) {
 
 	ifstream f1(N1);
@@ -128,33 +126,30 @@ bool areFilesEqual(char N1[], char N2[]) {
 	return equals;
 }
 
-//This function initializes the mosaic, factories with default values and then call the gamePlay function with those value
-bool newGame(vector<char> &box, vector<char> &lid, int n_player, const int Bsize) {
-
+bool newGame(vector<char>& box, vector<char>& lid, int n_player, const int Bsize) {
 	//Creating factories
 	vector<vector<char> >factories;	// Vector to save the factories
 	box.clear();
-
 	// Placing 20 tiles of each design/color to initialize the box
 	for (size_t i = 0; i < 20; i++) {
 
-		box.push_back('R');  // Red Tiles
+		box.push_back('R');	//Red Tiles
 	}
 	for (size_t i = 0; i < 20; i++) {
 
-		box.push_back('Y');  // Yellow Tiles
+		box.push_back('Y'); //Yellow tiles
 	}
 	for (size_t i = 0; i < 20; i++) {
 
-		box.push_back('B');  // Blue Tiles
+		box.push_back('B'); //Blue tiles
 	}
 	for (size_t i = 0; i < 20; i++) {
 
-		box.push_back('L'); // Light Blue Tiles
+		box.push_back('L'); //Light blue tiles
 	}
 	for (size_t i = 0; i < 20; i++) {
 
-		box.push_back('U'); // Black Tiles
+		box.push_back('U'); //Black tiles
 	}
 	for (size_t i = 0; i < 20; i++) {
 
@@ -162,6 +157,7 @@ bool newGame(vector<char> &box, vector<char> &lid, int n_player, const int Bsize
 	}
 	//Shuffling the initialized box
 	shuffle(box);
+
 	initFactories(factories, box, lid);		// initializing factories
 
 	// Initializing players
@@ -174,7 +170,7 @@ bool newGame(vector<char> &box, vector<char> &lid, int n_player, const int Bsize
 
 			return false;
 		}
-		
+
 		//Declaring the pattern board of both players
 		/*
 				 . ||
@@ -208,7 +204,6 @@ bool newGame(vector<char> &box, vector<char> &lid, int n_player, const int Bsize
 	bool ret;
 
 	ret = gamePlay(box, lid, players, factories, 1, n_player, Bsize);
-
 	if (players != nullptr) {
 
 		delete[]players;
@@ -217,7 +212,6 @@ bool newGame(vector<char> &box, vector<char> &lid, int n_player, const int Bsize
 	return ret;
 }
 
-//This function loads all required fields from saved file and then calls gamePlay() function
 bool loadGame(vector<char>& box, vector<char>& lid, char* name, int n_player, const int Bsize) {
 
 	ifstream fin;
@@ -233,6 +227,7 @@ bool loadGame(vector<char>& box, vector<char>& lid, char* name, int n_player, co
 			throw "Exception! No saved Game found...\n";
 		}
 		else {
+
 			int turn = -1;
 			string toBeignored = "";
 
@@ -243,7 +238,7 @@ bool loadGame(vector<char>& box, vector<char>& lid, char* name, int n_player, co
 			// Removing all already present tiles (if any) from the box
 			//so that new tiles can be placed
 			box.clear();
-			// At last, loading the remaining box of tiles in the saved file
+			// At last, loading the remaining box of tiles in the txt file
 			char tempp = '\0';
 			getline(fin, toBeignored, '=');	//To read the comment line till the "=" sign
 			fin.get(tempp);
@@ -252,7 +247,6 @@ bool loadGame(vector<char>& box, vector<char>& lid, char* name, int n_player, co
 				box.push_back(tempp);
 				fin.get(tempp);
 			}
-			box.pop_back();
 			//box.pop_back();
 			//--------------------------- Going to load lid
 			// Removing all already present tiles (if any) from the lid
@@ -269,7 +263,6 @@ bool loadGame(vector<char>& box, vector<char>& lid, char* name, int n_player, co
 				lid.push_back(tempp);
 				fin.get(tempp);
 			}
-			lid.pop_back();
 			//lid.pop_back();
 			//--------------------------- Going to load the factories
 
@@ -281,12 +274,12 @@ bool loadGame(vector<char>& box, vector<char>& lid, char* name, int n_player, co
 				vector<char> fac;
 				fin.get(tempp);
 				while (tempp != '\n') {
-
+					
 					fac.push_back(tempp); // Randomly generated tiles
 					fin.get(tempp);
 				}
 				factories.push_back(fac);
-			}	
+			}
 
 			//--------------------------- Going to load the Players
 
@@ -305,7 +298,7 @@ bool loadGame(vector<char>& box, vector<char>& lid, char* name, int n_player, co
 					g++;
 				}
 				players[w].name[g - 1] = '\0';
-				//players[w].name[g] = '\0';
+				
 				//Now going to read the score
 				getline(fin, toBeignored, '=');	//To read the comment line till the "=" sign
 				fin >> players[w].score;
@@ -320,15 +313,15 @@ bool loadGame(vector<char>& box, vector<char>& lid, char* name, int n_player, co
 					players[w].pattern[i] = new char[i + 1];
 					fin.get(tempp);
 
-					if (tempp == '\n' || tempp == '-') //it means the row is empty
-					{
-						for (int j = 0; j < i + 1; j++) {
+					//it means the row is empty
+					if (tempp == '\n' || tempp == '-') {
 
+						for (int j = 0; j < i + 1; j++) {
+							
 							players[w].pattern[i][j] = '.';
 						}
 					}
 					else {
-
 						int j;
 						for (j = 0; j < i + 1 && tempp != '\n'; j++) {
 
@@ -360,7 +353,7 @@ bool loadGame(vector<char>& box, vector<char>& lid, char* name, int n_player, co
 				}
 
 				//Loading the tile board
-		
+
 				//Board of player 
 				for (int i = 0; i < Bsize; i++) {
 
@@ -372,7 +365,7 @@ bool loadGame(vector<char>& box, vector<char>& lid, char* name, int n_player, co
 
 							players[w].board[i][j] = '.';
 						}
-						else {
+						else{
 							players[w].board[i][j] = tempp;
 						}
 					}
@@ -386,12 +379,12 @@ bool loadGame(vector<char>& box, vector<char>& lid, char* name, int n_player, co
 
 			fin.close();
 			cout << "Azul game successfully loaded\n";
-	        cout << "< game play continues from here > \n\n";
+			cout << "< game play continues from here > \n\n";
 			bool ret = true;
-			ret = gamePlay(box, lid , players, factories, turn, n_player, Bsize);
+			ret = gamePlay(box, lid, players, factories, turn, n_player, Bsize);
 			if (players != nullptr) {
 
-				delete []players;
+				delete[]players;
 			}
 			return ret;
 		}
@@ -399,7 +392,6 @@ bool loadGame(vector<char>& box, vector<char>& lid, char* name, int n_player, co
 	}
 }
 
-//This function is used to initialize the factories with default values
 void initFactories(vector<vector<char> >& factories, vector<char>& box, vector<char>& lid) {
 
 	//Removing any null element(if any) from the factories
@@ -410,9 +402,8 @@ void initFactories(vector<vector<char> >& factories, vector<char>& box, vector<c
 			factories[j].clear();
 		}
 	}
-
 	//If the box is empty/or have insufficient tiles then shift all tiles from the lid into the box
-	//according to the rules of Azul
+	//according to the rules of AZUL
 	if (box.size() < 20) {
 
 		size_t lidSize = lid.size();
@@ -420,24 +411,23 @@ void initFactories(vector<vector<char> >& factories, vector<char>& box, vector<c
 
 			box.push_back(lid[i]);
 		}
+
 		//Removing those all tiles from the lid
 		lid.clear();
 		//Now shuffling the box once again as tiles from lid can in in order.
 		shuffle(box);
 	}
-
 	//The central Factory
 	vector<char> center;
 	center.push_back('F');		// First turn brick
 	factories.push_back(center);
 	center.clear();
-	
-	//Now going to randomly generate remaining 5 factories 
+
 	size_t index = 1;
 	//Now going to place tiles in other 5 facctories
 	for (size_t i = 0; i < 5; i++) {
 
-		vector<char> fac;		
+		vector<char> fac;
 		for (int j = 0; j < 4; j++) {
 
 			if (box[box.size() - index] == 'F' || box[box.size() - index] == 'B' || box[box.size() - index] == 'Y' || box[box.size() - index] == 'R' || box[box.size() - index] == 'U' || box[box.size() - index] == 'L' || box[box.size() - index] == 'O') {
@@ -445,7 +435,6 @@ void initFactories(vector<vector<char> >& factories, vector<char>& box, vector<c
 				fac.push_back(box[box.size() - index]); // Adding last 4 tiles from the box in factories
 			}
 			else {
-				
 				j--;
 			}
 			index++;
@@ -453,16 +442,11 @@ void initFactories(vector<vector<char> >& factories, vector<char>& box, vector<c
 		factories.push_back(fac);
 		fac.clear();
 	}
-	//for(int i = 0 ;i < 6 ; i++)
-	//factories[i].erase(factories[i].begin());
-
 	box.resize(box.size() - 20);	 // To remove the tiles from box which are moved in factory
 }
+void DisplayState(vector<vector<char> >factories, Player* player,int n_player,int turn, const int Bsize) {
 
-//To print the all feilds of a player
-void DisplayState(vector<vector<char> >factories, Player* player, int n_player, int turn, const int Bsize) {
-
-	cout << "TURN FOR PLAYER:" <<  player[turn-1].name  << "\n";
+	cout << "TURN FOR PLAYER:" << player[turn-1].name << "\n";
 	cout << "Factories:\n";
 	for (size_t i = 0; i < factories.size(); i++) {
 
@@ -482,7 +466,7 @@ void DisplayState(vector<vector<char> >factories, Player* player, int n_player, 
 				cout << "\033[48;2;101;136;233m" << "L" << "\033[m ";//Light Blue
 			}
 			else if (factories[i][j] == 'R') {
-
+			
 				cout << "\033[48;2;255;0;0m" << "R" << "\033[m "; //Red
 			}
 			else if (factories[i][j] == 'U') {
@@ -510,7 +494,6 @@ void DisplayState(vector<vector<char> >factories, Player* player, int n_player, 
 
 		P2 = 0;
 	}
-
 	int var = turn - 1;
 	cout << "\nMosaic for " << player[turn - 1].name << "\t\t\tMosaic for " << player[P2].name <<"\n";
 	for (int i = 0; i < Bsize; i++) {
@@ -519,11 +502,9 @@ void DisplayState(vector<vector<char> >factories, Player* player, int n_player, 
 		var = turn - 1;
 		for (int g = 0; g < 2; g++) {
 
-			for (int j = 0; j < Bsize - 1 - i; j++) {
-
+			for (int j = 0; j < Bsize - 1 - i; j++){
 				cout << "  ";
 			}
-
 			for (int j = 0; j < i + 1; j++) {
 
 				if (player[var].pattern[i][j] == 'B') {
@@ -532,15 +513,15 @@ void DisplayState(vector<vector<char> >factories, Player* player, int n_player, 
 				}
 				else if (player[var].pattern[i][j] == 'L') {
 
-					cout << "\033[48;2;101;136;233m" << "L" << "\033[m "; // Light Blue
+					cout << "\033[48;2;101;136;233m" << "L" << "\033[m ";//Light Blue
 				}
 				else if (player[var].pattern[i][j] == 'R') {
 
-					cout << "\033[48;2;255;0;0m" << "R" << "\033[m "; // Red
+					cout << "\033[48;2;255;0;0m" << "R" << "\033[m "; //Red
 				}
 				else if (player[var].pattern[i][j] == 'U') {
 
-					cout << "\033[48;2;0;0;0m" << "U" << "\033[m "; // Black
+					cout << "\033[48;2;0;0;0m" << "U" << "\033[m "; //Black
 				}
 				else if (player[var].pattern[i][j] == 'O') {
 
@@ -565,15 +546,15 @@ void DisplayState(vector<vector<char> >factories, Player* player, int n_player, 
 				}
 				else if (player[var].board[i][j] == 'L') {
 
-					cout << "\033[48;2;101;136;233m" << "L" << "\033[m "; // Light Blue
+					cout << "\033[48;2;101;136;233m" << "L" << "\033[m ";//Light Blue
 				}
 				else if (player[var].board[i][j] == 'R') {
 
-					cout << "\033[48;2;255;0;0m" << "R" << "\033[m "; // Red
+					cout << "\033[48;2;255;0;0m" << "R" << "\033[m "; //Red
 				}
 				else if (player[var].board[i][j] == 'U') {
 
-					cout << "\033[48;2;0;0;0m" << "U" << "\033[m "; // Black
+					cout << "\033[48;2;0;0;0m" << "U" << "\033[m "; //Black
 				}
 				else if (player[var].board[i][j] == 'O') {
 
@@ -584,12 +565,14 @@ void DisplayState(vector<vector<char> >factories, Player* player, int n_player, 
 					cout << "\033[48;2;255;255;0;30m" << "Y" << "\033[m "; // Yellow
 				}
 				else {
+
 					cout << ". ";
 				}
 			}
 			cout << "\t\t";
 			var = P2;
 		}
+
 		cout << "\n";
 	}
 	player[turn-1].broken.print();
@@ -598,9 +581,7 @@ void DisplayState(vector<vector<char> >factories, Player* player, int n_player, 
 	cout << "\n";
 }
 
-//To save the present state of the game in txt file
 void saveGame(vector<char>& box, vector<char>& lid, Player* players, vector<vector<char> >& factories, int turn, char* filename, int n_player, const int Bsize) {
-
 	ofstream fout;
 	fout.open(filename, ios::out);
 	if (!fout) {
@@ -621,32 +602,31 @@ void saveGame(vector<char>& box, vector<char>& lid, Player* players, vector<vect
 				fout << "B";
 			}
 			else if (box[i] == 'L') {
-
-				 fout << "L";
+				fout << "L";
 			}
 			else if (box[i] == 'R') {
 
-				 fout << "R";
+				fout << "R";
 			}
 			else if (box[i] == 'U') {
 
-				 fout << "U";
-			 }
+				fout << "U";
+			}
 			else if (box[i] == 'O') {
 
-				 fout << "O";
+				fout << "O";
 			}
 			else if (box[i] == 'Y') {
 
-				 fout << "Y";
+				fout << "Y";
 			}
 			else if (box[i] == 'F') {
 
-				 fout << "F";
+				fout << "F";
 			}
-		
 		}
 		fout << "\n";
+
 		fout << "LID=";
 		// At last, writing the remaining box of tiles in the txt file
 		for (size_t i = 0; i < lid.size(); i++) {
@@ -683,6 +663,7 @@ void saveGame(vector<char>& box, vector<char>& lid, Player* players, vector<vect
 		fout << "\n";
 
 		for (size_t i = 0; i < factories.size(); i++) {
+
 			if (i == 0) {
 
 				fout << "FACTORY_CENTRE=";
@@ -697,10 +678,11 @@ void saveGame(vector<char>& box, vector<char>& lid, Player* players, vector<vect
 			}
 			fout << "\n";
 		}
-	
+
 		fout << "# Could use comments to separate sections\n";
 
 		//Writing the information of player 1
+
 		for (int x = 0; x < n_player; x++) {
 
 			fout << "PLAYER_" << (x + 1) << "_NAME=" << players[x].name << "\n";
@@ -715,8 +697,8 @@ void saveGame(vector<char>& box, vector<char>& lid, Player* players, vector<vect
 				}
 				fout << "\n";
 			}
-			fout << "PLAYER_" << (x + 1) << "_FLOOR_LINE=";
 
+			fout << "PLAYER_" << (x + 1) << "_FLOOR_LINE=";
 			//writing broken tiles of both players
 			if (players[x].broken.Head() != nullptr) {
 
@@ -729,8 +711,8 @@ void saveGame(vector<char>& box, vector<char>& lid, Player* players, vector<vect
 					cur = cur->next;
 				}
 			}
-			fout << "\n";
 
+			fout << "\n";
 			//Board of player 1
 			for (int i = 0; i < Bsize; i++) {
 
@@ -744,8 +726,8 @@ void saveGame(vector<char>& box, vector<char>& lid, Player* players, vector<vect
 		}
 		//---------------------------------------------------------------------------
 		// The turn(which player will play first in next round)
-		fout << "CURRENT_PLAYER="<< turn;
-		
+		fout << "CURRENT_PLAYER=" << turn;
+
 		cout << "Game successfully saved to \'" << filename << "\'\n";
 		cout << "< Gameplay continues until end - of - game > " << "\n\n";
 		//closing the txt file
@@ -753,7 +735,6 @@ void saveGame(vector<char>& box, vector<char>& lid, Player* players, vector<vect
 	}
 }
 
-//Return true if all factories are empty
 bool isEmpty(vector<vector<char> >factories) {
 
 	bool empty = true;
@@ -763,6 +744,7 @@ bool isEmpty(vector<vector<char> >factories) {
 		empty = false;
 	}
 	else {
+
 		for (size_t i = 0; i < factories.size() && empty; i++) {
 
 			for (size_t j = 0; j < factories[i].size(); j++) {
@@ -773,23 +755,16 @@ bool isEmpty(vector<vector<char> >factories) {
 				}
 			}
 		}
-		for (size_t i = 1; i < factories.size() && empty; i++) {
-
-			if (factories[i].size() != 0) {
-				empty = false;
-			}
-		}
 	}
 	return empty;
 }
 
-//To check if the required row of board can hold the required colour
 bool isColValid(char B[][6], const int Bsize, int row, char color) {
 
 	bool check = true;
 	for (int i = 0 ; i < Bsize && check ; i++) {
 
-		if (B[row][i] == color) {
+		if (B[row][i] == color ) {
 
 			check = false;
 		}
@@ -797,7 +772,6 @@ bool isColValid(char B[][6], const int Bsize, int row, char color) {
 	return check;
 }
 
-// Return true if the required factory can have this required colour char
 bool charPossible(vector<vector<char> >factories, int index, char colour) {
 
 	bool check = false;
@@ -810,14 +784,13 @@ bool charPossible(vector<vector<char> >factories, int index, char colour) {
 	return check;
 }
 
-//Gives the index of tile in the row in required required row
 int  giveIndexOfColour(char B[][6], const int Bsize, int index, char colour) {
 
 	char row[6] = { 'B','Y','R','U','L','O' };
 	for (int i = 0; i < index; i++) {
 
 		char temp = row[Bsize - 1];
-		for (int j = Bsize - 1 ; j > 0 ; j--) {
+		for (int j = Bsize - 1; j > 0; j--) {
 
 			row[j] = row[j - 1];
 		}
@@ -828,6 +801,7 @@ int  giveIndexOfColour(char B[][6], const int Bsize, int index, char colour) {
 	for (int i = 0; i < Bsize && cond; i++) {
 
 		if (row[i] == colour) {
+
 			index = i;
 			cond = false;
 		}
@@ -835,7 +809,6 @@ int  giveIndexOfColour(char B[][6], const int Bsize, int index, char colour) {
 	return index;
 }
 
-//This function asks user to chose the index where the player wants to place the tile in corresponding wall
 int askIndexOfColour(char B[][6], const int Bsize, int rows, char colour, bool& okay) {
 
 	int col = 0;
@@ -864,14 +837,11 @@ int askIndexOfColour(char B[][6], const int Bsize, int rows, char colour, bool& 
 
 		cout << "\033[48;2;255;255;0;30m" << "Y" << "\033[m "; // Yellow
 	}
-
 	cout << "\n";
 	cout << ">";
 	string input = "";
 	getline(cin,input);
 	char II = input[0];
-
-	//cin >> col;
 
 	col = static_cast<int>(II)-48;
 	if (std::cin.eof()) {
@@ -899,7 +869,6 @@ int askIndexOfColour(char B[][6], const int Bsize, int rows, char colour, bool& 
 	return col;
 }
 
-//To calculate the points of a player after each round
 bool calcPoint(char B[][6], const int Bsize, char**& pattern, LinkedList& broken, int& score, vector<char>& lid, string Pname) {
 
 	bool okay = true; // Just to handle the EOF character situation
@@ -911,7 +880,6 @@ bool calcPoint(char B[][6], const int Bsize, char**& pattern, LinkedList& broken
 	for (int i = 0 ; i < Bsize ; i++ ) {
 
 		cout << (i + 1) << " ";
-
 		for (int j = 0 ;j < Bsize ; j++) {
 
 			cout << B[i][j] << " ";
@@ -919,7 +887,6 @@ bool calcPoint(char B[][6], const int Bsize, char**& pattern, LinkedList& broken
 		cout << "\n";
 	}
 	cout << "\n";
-
 	// First things first, moving all completed rows's tile colour to the right side row of mosaic
 	for (int rows = 0; rows < Bsize; rows++) {
 
@@ -939,21 +906,19 @@ bool calcPoint(char B[][6], const int Bsize, char**& pattern, LinkedList& broken
 					cond = false;	// just to break the loop
 				}
 			}
-
 			//If row is full of same tiles then should move this tile to the right side
 			//of mosaic
 			if (complete) {
 
 				int col = -1;
-				//col = giveIndexOfColour(B, Bsize, rows, first);
 				col = askIndexOfColour(B, Bsize, rows, first, okay);
 
 				// Player entered EOF
 				if (!okay) {
+
 					return okay;
 				}
-
-				//shifting the colour to the corresponding block at right side of the mossaic
+				//shifting the colour to the corresponding block at right side of the mosaic
 				B[rows][col] = first;
 
 				//Now calculating the points of this tile
@@ -971,6 +936,7 @@ bool calcPoint(char B[][6], const int Bsize, char**& pattern, LinkedList& broken
 					count++;
 				}
 				if (check1) {
+
 					count++;
 				}
 
@@ -987,11 +953,13 @@ bool calcPoint(char B[][6], const int Bsize, char**& pattern, LinkedList& broken
 					count++;
 				}
 				if (check2) {
+
 					count++;
 				}
 
 				// If the tile had no adjacent tiles
 				if (count == 0) {
+
 					roundScore++;
 				}
 
@@ -1012,7 +980,7 @@ bool calcPoint(char B[][6], const int Bsize, char**& pattern, LinkedList& broken
 			}
 		}
 	}
-	//lid.pop_back();
+
 	int count = 0;
 	int rate = -1;
 	int brokenTiles = broken.getSize();
@@ -1040,6 +1008,7 @@ bool calcPoint(char B[][6], const int Bsize, char**& pattern, LinkedList& broken
 		}
 		count += rate;
 	}
+
 	if (brokenTiles > 0) {
 
 		broken.removeAll(lid, true);
@@ -1053,13 +1022,12 @@ bool calcPoint(char B[][6], const int Bsize, char**& pattern, LinkedList& broken
 	return true;
 }
 
-//Function to check the the game over state (if one row is completed on the box)
 bool checkForRow(char B[][6]) {
 
 	bool check = false;
-
-	//if check is true then it means we have found a incomplete row
+	//if check is true then it means we have found an incomplete row
 	for (size_t i = 0; i < 6 && !check; i++) {
+
 		size_t j = 0;
 		for (j = 0; j < 6 && !check; j++) {
 
@@ -1071,19 +1039,19 @@ bool checkForRow(char B[][6]) {
 		if (j == 6 && !check) {
 
 			check = true;	//a complete row is found
-		} else {
+		}
+		else {
 			check = false;
 		}
 	}
 	return check;
 }
 
-//To count the final score bonuses at the end of the game
 void finalScoring(char B[][6], int& score) {
 
 	bool cond = true; // This bool is just to break the the loops if some condition(s) are meet 
 	//Checking for all complete rows 
-	for (int i = 0; i < 6 ; i++) {
+	for (int i = 0; i < 6; i++) {
 
 		int j = 0;
 		cond = true;
@@ -1095,7 +1063,6 @@ void finalScoring(char B[][6], int& score) {
 				j--;
 			}
 		}
-
 		// If above row had no vacant space, it means it is complete
 		if (j == 6) {
 
@@ -1105,7 +1072,7 @@ void finalScoring(char B[][6], int& score) {
 
 	cond = true;
 	//Checking for all complete columns
-	for (int i = 0; i < 6 ; i++) {
+	for (int i = 0; i < 6; i++) {
 
 		int j = 0;
 		for (j = 0; j < 6 && cond; j++) {
@@ -1116,7 +1083,6 @@ void finalScoring(char B[][6], int& score) {
 				j--;
 			}
 		}
-
 		// If the current column had no vacant space, it means it is complete 
 		if (j == 6) {
 
@@ -1130,7 +1096,7 @@ void finalScoring(char B[][6], int& score) {
 	//This array will contain the count of each colour tile in the final board
 	//at indiviual index
 	/*
-	
+
 	[0] holds count for Red (R)
 	[1] holds count for Yellow (Y)
 	[2] holds count for Dark blue (B)
@@ -1138,6 +1104,7 @@ void finalScoring(char B[][6], int& score) {
 	[4] holds count for Black (U)
 
 	*/
+
 	int colourCount[6] = { 0 };
 	for (int i = 0; i < 5; i++) {
 
@@ -1151,7 +1118,7 @@ void finalScoring(char B[][6], int& score) {
 
 				colourCount[1]++;
 			}
-			else if(B[i][j] == 'B') {
+			else if (B[i][j] == 'B') {
 
 				colourCount[2]++;
 			}
@@ -1170,7 +1137,7 @@ void finalScoring(char B[][6], int& score) {
 		}
 	}
 	//At this point we have count of occurunces of each colour
-	
+
 	// Now we will find the minimum number for which each colour occured
 	int min = 9999999;
 
@@ -1183,7 +1150,7 @@ void finalScoring(char B[][6], int& score) {
 		}
 	}
 	//now going to check if all colours have occurred minimum for min times (Note: the min can be 0 so
-	// if a tiles has occurred not even once then even that condition get covered under this)
+	// if a tiles has occurred not even once then even tat condition get covered under this)
 	int i;
 	cond = true;
 
@@ -1198,15 +1165,15 @@ void finalScoring(char B[][6], int& score) {
 
 	//this means that min contains the number of times for which all colours occurred at least
 	if (cond) {
+
 		//10 points for each time, all colours occureds.
 		//if all colours occured not even once then min will be 0, hence no effect on scoring 
 		score += (min * 10);
 	}
 }
 
-// Instructions UI
 void instructions() {
-	
+
 	cout << "\t\t\t\t\t\t\033[48;2;0;255;34;30m *INSTRUCTIONS*\033[m\n\n";
 	cout << "\t\t\t\033[48;2;0;255;34;30mInput formats: <type> <factory> <colour> <storage row>\033[m\n\n";
 
@@ -1222,9 +1189,9 @@ void instructions() {
 	cout << "\t\t\t\033[48;2;0;9;255m   the program. (CAUTION: All unsaved progress will be lost)\033[m\n\n";
 	cout << "\t\t\t\033[48;2;255;0;0m6.\033[48;2;0;9;255m A player can enter \"turn n A F\" to move all tiles of nth factory (0 <= n <= 6)\033[m\n";
 	cout << "\t\t\t\033[48;2;0;9;255m   to his/her floor.\033[m\n\n";
+
 }
 
-//The following function will be called by newGame() or loadGame() after populating the fields
 bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vector<char> >& factories, int turn, int n_player, const int Bsize) {
 
 	bool loop = true;
@@ -1246,51 +1213,53 @@ bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vec
 		// This loop is responsible for back to back turns of players in one round
 		while (loop && round) {
 
-				DisplayState(factories, players ,n_player,turn, Bsize);
+			DisplayState(factories, players ,n_player,turn, Bsize);
 
-				check = true;
-				while (check) {
-					
-					cout << "> ";
-					getline(cin,input);
-					isShow = true;
-					if (input.substr(0, 5) == "turn " && input.size() == 10) {
-						
-						char _f_ = input[5];
-						int _f = static_cast<int>(_f_) - 48;
+			check = true;
+			while (check) {
 
-						char _colour = (char)input[7];
+				cout << "> ";
+				getline(cin, input);
+				isShow = true;
+				
+				if (input.substr(0, 5) == "turn " && input.size() == 10) {
 
-						char _row = input[9];
-						int _r = static_cast<int>(_row) - 48;
+					char _f_ = input[5];
+					int _f = static_cast<int>(_f_) - 48;
+
+					char _colour = (char)input[7];
+
+					char _row = input[9];
+					int _r = static_cast<int>(_row) - 48;
+
+					//just checking if input command is valid or not
+					if ((_f >= 0 && _f <= 5) && (_colour == 'R' || _colour == 'Y' || _colour == 'B' || _colour == 'L' || _colour == 'U' || _colour == 'O' || _colour == 'A') && ((_r >= 1 && _r <= Bsize) || _r == 22 )) {
+
+						// if player wants to move all tiles from selected factory into his/her floor
+						if (_r == 22 && _colour == 'A' ) {
+
+							if (factories[_f].size() > 0) {
+
+								//checking for First-turn tile in central factory
+								if (!isFirst && _f == 0) {
+
+									bool _cond = true; // Just to break the loop if specific condition meets
+									for (size_t i = 0; i < factories[_f].size() && _cond; i++) {
 
 
-						//just checking if input command is valid or not
-						if ((_f >= 0 && _f <= 5) && (_colour == 'R' || _colour == 'Y' || _colour == 'B' || _colour == 'L' || _colour == 'U' || _colour == 'O' || _colour == 'A') && ((_r >= 1 && _r <= Bsize) || _r == 22 )) {
+										if (factories[_f][i] == 'F') {
 
-							// if player wants to move all tiles from selected factory into his/her floor 
-							if (_r == 22 && _colour == 'A' ) {
-
-								if (factories[_f].size() > 0) {
-
-									//checking for First turn tile in central factory
-									if (!isFirst && _f == 0) {
-
-										bool _cond = true; // Just to break the loop if specific condition meets
-										for (size_t i = 0; i < factories[_f].size() && _cond; i++) {
-
-											if (factories[_f][i] == 'F') {
-
-												isFirst = true;
-												_cond = false;
-											}
-										}
-										if (isFirst && !firstTileFirstCheck) {
-
-											firstTileFirstCheck = true;
-											cout << "\033[48;2;0;255;34;30m"  << players[turn - 1].name << " got the first player tile.\033[m\n\n";
+											isFirst = true;
+											_cond = false;
 										}
 									}
+									if (isFirst && !firstTileFirstCheck) {
+
+										firstTileFirstCheck = true;
+										cout << "\033[48;2;0;255;34;30m"  << players[turn - 1].name << " got the first player tile.\033[m\n\n";
+									}
+								}
+
 
 								//Moving all tiles from the selected factory to the floor of current player
 								for (size_t i = 0; i < factories[_f].size(); i++) {
@@ -1357,18 +1326,23 @@ bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vec
 										}
 									}
 								}
+
 								if (valid && possibleTiles == 0) {
 
 									cout << "\033[48;2;0;255;0;0mRequired row is full, can not place more tiles in it.\033[m\n\n";
 									valid = false;
 									isShow = false;
 								}
+
 								//At this moment we know that the location is alright to place the tiles in mosaic
 								if (valid) {
+
 									//checking for First turn tile in central factory
 									if (!isFirst && _f == 0) {
+
 										bool _cond = true; // Just to break the loop if specific condition meets
 										for (size_t i = 0; i < factories[_f].size() && _cond; i++) {
+
 
 											if (factories[_f][i] == 'F') {
 
@@ -1376,6 +1350,7 @@ bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vec
 												_cond = false;
 											}
 										}
+
 										if (isFirst && !firstTileFirstCheck) {
 
 											firstTileFirstCheck = true;
@@ -1388,7 +1363,6 @@ bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vec
 									vector<char> temp_central_F0;
 									ifFirstTileGained = false;
 									for (size_t i = 0; i < factories[_f].size(); i++) {
-
 										// if we are in central factory and firstplayer tile is still there
 										if (factories[_f][i] == 'F') {
 
@@ -1400,10 +1374,12 @@ bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vec
 										}
 										//counting the same colur tiles
 										else if (factories[_f][i] == _colour) {
+
 											actual++;
 										}
 										//All other tiles will be moved to the central factory
 										else {
+
 											if (factories[_f][i] == 'F' || factories[_f][i] == 'B' || factories[_f][i] == 'Y' || factories[_f][i] == 'R' || factories[_f][i] == 'U' || factories[_f][i] == 'L' || factories[_f][i] == 'O')
 												temp_central_F.push_back(factories[_f][i]);
 										}
@@ -1419,9 +1395,9 @@ bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vec
 											}
 										}
 										else {
-											
 											// Skipping the first player tile
 											for (size_t i = 1; i < factories[0].size(); i++) {
+
 												if (factories[0][i] == 'F' || factories[0][i] == 'B' || factories[0][i] == 'Y' || factories[0][i] == 'R' || factories[0][i] == 'U' || factories[0][i] == 'L' || factories[_f][i] == 'O')
 													temp_central_F0.push_back(factories[0][i]);
 											}
@@ -1474,7 +1450,7 @@ bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vec
 										turn = 2;
 									}
 									else if (turn == 2) {
-
+										
 										turn = 1;
 									}
 									check = false;
@@ -1496,7 +1472,7 @@ bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vec
 								cout << "\033[1;37;41mThe Required Factory is Empty Or do not have the required colour. Please enter turn again.\033[m\n\n";
 							}
 							else {
-
+							
 								cout << "\033[1;37;41mInvalid turn, please input again.\033[m\n\n";
 							}
 						}
@@ -1559,11 +1535,11 @@ bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vec
 			initFactories(factories, box, lid);
 
 			//Setting the turn according to the first tile position
-			if (players[0].broken.Head() != NULL) {
+			if (players[0].broken.Head() != nullptr) {
 
 				Node* cur = players[0].broken.Head();
 				bool cond = true;
-				while (cur != NULL && cond) {
+				while (cur != nullptr && cond) {
 
 					if (cur->data == 'F') {
 
@@ -1574,11 +1550,13 @@ bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vec
 				}
 				//If 'F' tile is not present in floor of player 1
 				if (cond) {
+
 					turn = 2;
 				}
 			}
 			//If player 1 does not have the F tile then player 2 must have
 			else {
+
 				turn = 2;
 			}
 			//Now going to remove some unwanted friends from the vector
@@ -1592,6 +1570,7 @@ bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vec
 					v_size--;
 				}
 			}
+
 			/*     Implement score calculations and end of game logic here   */
 			//Calculating the scores by shifting the tiles from left side of mosaic to right side (if all conditions meet)
 			bool o = true;
@@ -1648,16 +1627,18 @@ bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vec
 				cout << "Score of " << players[i].name << " = " << players[i].score << "\n";
 			}
 		}
-		// Player2 has won 
+		// Player2 has won
 		else if (players[0].score < players[1].score) {
+
 			cout << "\nPlayer " << players[1].name << " Wins!\n\n";
 			for (int i = 0; i < n_player; i++) {
 
 				cout << "Score of " << players[i].name << " = " << players[i].score << "\n";
 			}
 		}
-		// The match is draw 
+		// The match is draw
 		else {
+
 			cout << "It's a draw\n\n";
 			for (int i = 0; i < n_player; i++) {
 
@@ -1667,6 +1648,7 @@ bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vec
 
 		cout << "\nMosaic for " << players[0].name << "\t\t\tMosaic for " << players[1].name << "\n";
 			for (int i = 0; i < Bsize; i++) {
+
 				cout << i + 1 << ": ";
 				for (int g = 0; g < n_player; g++) {
 
@@ -1690,10 +1672,11 @@ bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vec
 							cout << "\033[48;2;255;0;0m" << "R" << "\033[m "; // Red
 						}
 						else if (players[g].pattern[i][j] == 'U') {
+
 							cout << "\033[48;2;0;0;0m" << "U" << "\033[m "; // Black
 						}
 						else if (players[g].pattern[i][j] == 'O') {
-
+						
 							cout << "\033[48;2;255;165;0;30m" << "O" << "\033[m ";  // Orange
 						}
 						else if (players[g].pattern[i][j] == 'Y') {
@@ -1716,11 +1699,11 @@ bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vec
 						}
 						else if (players[g].board[i][j] == 'L') {
 
-							cout << "\033[48;2;101;136;233m" << "L" << "\033[m "; // Light Blue
+							cout << "\033[48;2;101;136;233m" << "L" << "\033[m ";//Light Blue
 						}
 						else if (players[g].board[i][j] == 'R') {
 
-							cout << "\033[48;2;255;0;0m" << "R" << "\033[m "; // Red
+							cout << "\033[48;2;255;0;0m" << "R" << "\033[m "; //Red
 						}
 						else if (players[g].board[i][j] == 'U') {
 
@@ -1735,7 +1718,6 @@ bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vec
 							cout << "\033[48;2;255;255;0;30m" << "Y" << "\033[m "; // Yellow
 						}
 						else {
-
 							cout << ". ";
 						}
 					}
@@ -1744,13 +1726,14 @@ bool gamePlay(vector<char>& box, vector<char>& lid, Player*& players, vector<vec
 
 				cout << "\n";
 			}
+
 		delete[]players;
-		players = NULL;
+		players = nullptr;
 		cout << "\n ***** Moving towards the main menu *****\n";
 		return true;
 	}
+
 	else {
-		
 		return false;
 	}
 }
