@@ -1,0 +1,58 @@
+Menu
+----
+1. New Game
+2. Load Game
+3. Credits
+4. Quit
+
+> 
+Starting a New Game
+Enter a name for player 1
+> Enter a name for player 2
+> 
+Let's Play!
+
+	[48;2;0;255;34;30m=== Start Round ===[m
+
+TURN FOR PLAYER:player1
+Factories:
+0: [48;2;255;255;255;30mF[m 
+1: [48;2;255;0;0mR[m [48;2;255;0;0mR[m [48;2;255;0;0mR[m [48;2;101;136;233mL[m 
+2: [48;2;0;0;0mU[m [48;2;0;0;0mU[m [48;2;255;165;0;30mO[m [48;2;255;255;0;30mY[m 
+3: [48;2;0;0;0mU[m [48;2;0;9;255mB[m [48;2;255;255;0;30mY[m [48;2;255;255;0;30mY[m 
+4: [48;2;0;9;255mB[m [48;2;101;136;233mL[m [48;2;255;165;0;30mO[m [48;2;255;165;0;30mO[m 
+5: [48;2;0;0;0mU[m [48;2;0;9;255mB[m [48;2;255;0;0mR[m [48;2;255;165;0;30mO[m 
+
+Mosaic for player1			Mosaic for player2
+1:           .  || . . . . . . 		          .  || . . . . . . 		
+2:         . .  || . . . . . . 		        . .  || . . . . . . 		
+3:       . . .  || . . . . . . 		      . . .  || . . . . . . 		
+4:     . . . .  || . . . . . . 		    . . . .  || . . . . . . 		
+5:   . . . . .  || . . . . . . 		  . . . . .  || . . . . . . 		
+6: . . . . . .  || . . . . . . 		. . . . . .  || . . . . . . 		
+Broken: 				Broken: 
+> 						[48;2;0;255;34;30m *INSTRUCTIONS*[m
+
+			[48;2;0;255;34;30mInput formats: <type> <factory> <colour> <storage row>[m
+
+			[48;2;255;0;0m1.[48;2;0;9;255m First you will type the command name e.g. turn, save.[m
+			[48;2;0;9;255m   only these 2 are valid commands[m
+
+			[48;2;255;0;0m2.[48;2;0;9;255m Then with a SPACE you will write the number of factory from which you[m
+		[48;2;0;9;255m	   want to pick tiles. (This MUST be an integer (range 0 - 5) )[m
+
+			[48;2;255;0;0m3.[48;2;0;9;255m Then with a SPACE you will write the colour of tile you want to pick[m
+			[48;2;0;9;255m   from that specified factory. (Valid colours: R, Y, B, L, U, O) all other inputs are invalid.[m
+
+			[48;2;255;0;0m4.[48;2;0;9;255m Then at last, with a SPACE you will write the number of storage row.[m
+			[48;2;0;9;255m   (This MUST be an integer (range 1 - 6) )[m
+
+			[48;2;255;0;0m5.[48;2;0;9;255m A player can enter "turn n A F" to move all tiles of nth factory (0 <= n <= 6)[m
+			[48;2;0;9;255m   to their floor.[m
+
+			[48;2;255;0;0m6.[48;2;0;9;255m At any moment a player can enter EOF to exit the game and terminate[m
+			[48;2;0;9;255m   the program. (CAUTION: All unsaved progress will be lost)[m
+
+> 
+
+Goodbye

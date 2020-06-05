@@ -1184,12 +1184,12 @@ void instructions() {
 	cout << "\t\t\033[48;2;0;9;255m	   want to pick tiles. (This MUST be an integer (range 0 - 5) )\033[m\n\n";
 	cout << "\t\t\t\033[48;2;255;0;0m3.\033[48;2;0;9;255m Then with a SPACE you will write the colour of tile you want to pick\033[m\n";
 	cout << "\t\t\t\033[48;2;0;9;255m   from that specified factory. (Valid colours: R, Y, B, L, U, O) all other inputs are invalid.\033[m\n\n";
-	cout << "\t\t\t\033[48;2;255;0;0m4.\033[48;2;0;9;255m Then at last, with a SPACE you will write the numebr of storage row.\033[m\n";
+	cout << "\t\t\t\033[48;2;255;0;0m4.\033[48;2;0;9;255m Then at last, with a SPACE you will write the number of storage row.\033[m\n";
 	cout << "\t\t\t\033[48;2;0;9;255m   (This MUST be an integer (range 1 - 6) )\033[m\n\n";
-	cout << "\t\t\t\033[48;2;255;0;0m5.\033[48;2;0;9;255m At any moment a player can enter EOF to exit the game and terminate\033[m\n";
+	cout << "\t\t\t\033[48;2;255;0;0m5.\033[48;2;0;9;255m A player can enter \"turn n A F\" to move all tiles of nth factory (0 <= n <= 6)\033[m\n";
+	cout << "\t\t\t\033[48;2;0;9;255m   to their floor.\033[m\n\n";
+	cout << "\t\t\t\033[48;2;255;0;0m6.\033[48;2;0;9;255m At any moment a player can enter EOF to exit the game and terminate\033[m\n";
 	cout << "\t\t\t\033[48;2;0;9;255m   the program. (CAUTION: All unsaved progress will be lost)\033[m\n\n";
-	cout << "\t\t\t\033[48;2;255;0;0m6.\033[48;2;0;9;255m A player can enter \"turn n A F\" to move all tiles of nth factory (0 <= n <= 6)\033[m\n";
-	cout << "\t\t\t\033[48;2;0;9;255m   to his/her floor.\033[m\n\n";
 
 }
 
