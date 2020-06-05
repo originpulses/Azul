@@ -1,14 +1,14 @@
 #include "Game.h"
 
 //Function to display the main menu and take user's input
-int mainMenu()
-{
+int mainMenu() {
+
 	int choice = 0;
 	cout << "Menu\n";
 	cout << "----\n";
 	cout << "1. New Game\n";
 	cout << "2. Load Game\n";
-	cout << "3. Credits (Show student information)\n";
+	cout << "3. Credits\n";
 	cout << "4. Quit\n\n> ";
 
 	string input;
@@ -297,7 +297,8 @@ bool loadGame(vector<char>& box, vector<char>& lid, char* name, int n_player, co
 
 					g++;
 				}
-				players[w].name[g - 1] = '\0';
+				//players[w].name[g - 1] = '\0';
+				players[w].name[g] = '\0';
 				
 				//Now going to read the score
 				getline(fin, toBeignored, '=');	//To read the comment line till the "=" sign
